@@ -17,9 +17,9 @@ Function isInCollection(key As String, col As Variant)
             Stop
         Else
             If IsObject(col(key)) Then
-                Set tmp = col(key)
+                Set tmp = col.Item(key)
             Else
-                tmp = col(key)
+                tmp = col.Item(key)
             End If
         End If
     On Error GoTo 0
