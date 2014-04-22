@@ -1,8 +1,5 @@
 Sub economyModeOn()
-    ' эконом-мода
-    With Application
-        .Calculation = xlCalculationManual
-        .ScreenUpdating = False
-        .EnableEvents = False
-    End With
+    Application.Calculation = xlCalculationManual
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
 End Sub

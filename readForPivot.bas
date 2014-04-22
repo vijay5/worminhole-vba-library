@@ -1,4 +1,28 @@
 Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColProperties As Integer, Optional numOfRowParams As Integer = 1, Optional numOfColParams As Integer = 1)
+    ''' Читает текущий лист в сводную таблицу
+    ''' На входе может быть только плоская таблица
+    ''' Внешний вид входящей таблицы:
+    '''
+    ''' [*]                +-----------------------+-----------------------+
+    '''                    |Var1-1                 |Var1-2                 |
+    '''                    +-------+-------+-------+-------+-------+-------+
+    '''   Col1  Col2  ColN |Var2-1 |Var2-2 |Var2-3 |Var2-1 |Var2-2 |Var2-3 |
+    '''  +-----+-----+-----+-------+-------+-------+-------+-------+-------+
+    '''  |     |     |     |TLCell | ...   | ...   | ...   | ...   | ...   |
+    '''
+    ''' где
+    ''' [*] - левый верхний угол листа с данными
+    ''' Col1-ColN - число фиксированных переменных (numOfHeaderCols)
+    ''' Var1 - "непостоянная" переменная (первая из двух, всего переменных неограничено)
+    ''' Var2 - "непостоянная" переменная (вторая из двух, подчинена первой)
+    ''' TLCell - первая ячейка с данными
+    ''' здесь видно, что кол-во строк над таблицей равно кол-ву "непостоянных переменных" (если таблица составлена верно)
+    '''
+    ''' на выходе будет следующая "простая" таблица
+    '''  Col1  Col2  ColN ||Var1  Var2 || Value
+    ''' +-----+-----+-----++-----+-----++-------+
+    ''' |     |     |     ||     |     ||       |
+
     Dim height0 As Long, height As Long, width As Long
     Dim rowLabels As Variant, colLabels As Variant, sourceData As Variant
     Dim minRow As Long, maxRow As Long
