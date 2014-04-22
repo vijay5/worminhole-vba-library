@@ -1,3 +1,4 @@
+' Взято с сайта www.alglib.ru (Recoded from Fortran to VBA by Bochkanov Sergey in 2005)
 'вытащить часть матрицы
 '
 'Параметры:

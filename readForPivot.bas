@@ -1,5 +1,4 @@
-Sub ReadToPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColProperties As Integer, Optional numOfRowParams As Integer = 1, Optional numOfColParams As Integer = 1)
-    Dim numOfRowProperties As Long, numOfColProperties As Long, numOfRowParams As Long, numOfColParams As Long
+Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColProperties As Integer, Optional numOfRowParams As Integer = 1, Optional numOfColParams As Integer = 1)
     Dim height0 As Long, height As Long, width As Long
     Dim rowLabels As Variant, colLabels As Variant, sourceData As Variant
     Dim minRow As Long, maxRow As Long
