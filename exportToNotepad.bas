@@ -1,4 +1,5 @@
 ' экспортирует одномерный массив в блокнот
+' REQUIRE: addJournal, FindWindowEx, arrayDepth, arrayLength, MatrixPart, reReplace, sendMessage
 Sub exportToNotepad(tmpArray As Variant)
     Dim notepadID As Variant, hwnd As Long, hwndEdit As Long
     Dim buffer As DataObject ' типа буфер обмена

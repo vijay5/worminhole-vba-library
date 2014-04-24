@@ -8,6 +8,7 @@
 '    makeItSingle      -   сделать массив одиночным (только если Min=Max хотя-бы по одной оси)
 '
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' REQUIRE: MaxInt, MinInt
 Function MatrixPart(ByRef a As Variant, _
          ByVal minRow As Long, _
          ByVal maxRow As Long, _

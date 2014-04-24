@@ -1,3 +1,4 @@
+' REQUIRE: isInCollection
 Function getUniqueValuesList(rng As Range) As Collection
     
     Dim coll As New Collection

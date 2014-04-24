@@ -1,3 +1,4 @@
+' REQUIRE: economyModeOn, economyModeOff
 Sub DeleteByZeroLColumn(Optional hide As Boolean = False, Optional askForMultiSheets As Boolean = True)
     ' удал€ютс€/пр€чутс€ все строки, если в левых €чейках выделени€ есть нули или пустые €чейки
     ' работает с одной областью
