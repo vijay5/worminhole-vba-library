@@ -1,5 +1,5 @@
+''' по адресу на листе возвращает сводную таблицу
 Function getPivotByCell(rng As Range) As PivotTable
-    ''' по адресу на листе возвращает сводную таблицу
     Dim sh As Worksheet
     Dim pivot As Variant
     

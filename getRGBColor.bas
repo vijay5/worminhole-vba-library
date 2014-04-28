@@ -1,4 +1,4 @@
-' узнаёт цвет заливки или шрифта ячейки
+''' узнаёт цвет заливки или шрифта ячейки
 Function getRGBColor(cl As Variant, Optional getRGBforFill As Boolean = True) As Variant
     getRGBColor = "!Error"
     If TypeName(cl) = "Range" Then

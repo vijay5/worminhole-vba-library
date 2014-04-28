@@ -1,4 +1,4 @@
-' создаёт разреженный вектор значений. Числа с шагом step, ограничение сверху и/или по макс. числу элементов в векторе
+''' создаёт разреженный вектор значений. Числа с шагом step, ограничение сверху и/или по макс. числу элементов в векторе
 Function stepFunction(startAt As Variant, step As Variant, Optional stopAt As Variant = "", Optional numOfPoints As Integer = -1) As Variant
     Dim curValue As Variant, curPoints As Integer
     Dim chk As Boolean

@@ -1,5 +1,6 @@
+''' поиск регул€рных выражений
+''' Ћучше использовать "array" в качестве returnValue
 Function reFind(ByVal text1 As Variant, ByVal patt As Variant, Optional ByVal returnValue As Variant = "boolean", Optional ByVal index As Variant = -1) As Variant
-    ' поиск регул€рных выражений
     Set re = CreateObject("vbscript.regexp") ' позднее св€зывание - подключаем RegExp
     Dim Matches, Match, tmp, m
     

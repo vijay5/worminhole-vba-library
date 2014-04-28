@@ -1,5 +1,5 @@
-' для запуска с рабочего листа
-' при большом количестве формул 2003 глючит
+''' для запуска с рабочего листа
+''' при большом количестве формул 2003 глючит
 Function switcher(ParamArray VarExp() As Variant) As Variant
     Select Case (UBound(VarExp) - LBound(VarExp) + 1)
     Case 2: switcher = Switch(VarExp(0), VarExp(1))

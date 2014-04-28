@@ -1,4 +1,4 @@
-' создаёт разреженный массив, с заданным шагом по каждой из 1-2 осей
+''' создаёт разреженный массив, с заданным шагом по каждой из 1-2 осей
 ' REQUIRE: stepFunction, MinMax, arrayLength
 Function stepArray(sourceArray As Variant, Optional rowsBeginAt As Variant = 0, Optional stepForRows As Variant = 1, Optional colsBeginAt As Variant = 0, Optional stepForCols As Variant = 1) As Variant
     Dim rowNumbers As Variant, colNumbers As Variant

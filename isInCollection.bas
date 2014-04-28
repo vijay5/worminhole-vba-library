@@ -1,4 +1,4 @@
-' эквивалент dictionary.exists(key)
+''' эквивалент dictionary.exists(key)
 Function isInCollection(key As String, col As Variant)
     Dim tmp As Variant
     

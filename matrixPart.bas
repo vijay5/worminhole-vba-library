@@ -1,14 +1,13 @@
-' Взято с сайта www.alglib.ru (Recoded from Fortran to VBA by Bochkanov Sergey in 2005)
-'вытащить часть матрицы
-'
-'Параметры:
-'    A                 -   матрица-источник
-'    MinRow, MaxRow    -   диапазон строк, в которых находится подматрица-источник
-'    MinCol, MaxCol    -   диапазон столбцов, в которых находится подматрица-источник
-'    makeItSingle      -   сделать массив одиночным (только если Min=Max хотя-бы по одной оси)
-'
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-' REQUIRE: MaxInt, MinInt
+''' Взято с сайта www.alglib.ru (Recoded from Fortran to VBA by Bochkanov Sergey in 2005)
+'''вытащить часть матрицы
+'''
+'''Параметры:
+'''    A                 -   матрица-источник
+'''    MinRow, MaxRow    -   диапазон строк, в которых находится подматрица-источник
+'''    MinCol, MaxCol    -   диапазон столбцов, в которых находится подматрица-источник
+'''    makeItSingle      -   сделать массив одиночным (только если Min=Max хотя-бы по одной оси)
+'''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Function MatrixPart(ByRef a As Variant, _
          ByVal minRow As Long, _
          ByVal maxRow As Long, _
@@ -39,7 +38,7 @@ Function MatrixPart(ByRef a As Variant, _
     If dimensions = 1 Then ' одномерный массив
         ReDim tmpArray(1 To maxRow - minRow + 1) ' расширили массив
         ReDim tmpArray1(1 To maxRow - minRow + 1) ' расширили массив
-        For i = MaxInt(LBound(a), minRow) To MinInt(UBound(a), maxRow) ' за границы массива не выйдем
+        For i = WorksheetFunction.Max(LBound(a), minRow) To WorksheetFunction.Min(UBound(a), maxRow) ' за границы массива не выйдем
             If toDouble Then tmpArray(i - minRow + 1) = a(i)
             If Not toDouble Then tmpArray1(i - minRow + 1) = a(i)
         Next i
@@ -48,8 +47,8 @@ Function MatrixPart(ByRef a As Variant, _
         If makeItSingle And (maxRow = minRow Or MaxCol = minCol) Then  ' если есть флаг и это можно сделать
             ReDim tmpArray(1 To maxRow - minRow + MaxCol - minCol + 1) ' расширили массив
             ReDim tmpArray1(1 To maxRow - minRow + MaxCol - minCol + 1) ' расширили массив
-            For i = MaxInt(LBound(a, 1), minRow) To MinInt(UBound(a, 1), maxRow)
-                For j = MaxInt(LBound(a, 2), minCol) To MinInt(UBound(a, 2), MaxCol)
+            For i = WorksheetFunction.Max(LBound(a, 1), minRow) To WorksheetFunction.Min(UBound(a, 1), maxRow)
+                For j = WorksheetFunction.Max(LBound(a, 2), minCol) To WorksheetFunction.Min(UBound(a, 2), MaxCol)
                     If toDouble Then tmpArray(i - minRow + j - minCol + 1) = a(i, j)
                     If Not toDouble Then tmpArray1(i - minRow + j - minCol + 1) = a(i, j)
                 Next j
@@ -59,8 +58,8 @@ Function MatrixPart(ByRef a As Variant, _
             ReDim tmpArray(1 To maxRow - minRow + 1, 1 To MaxCol - minCol + 1) ' расширили массив
             ReDim tmpArray1(1 To maxRow - minRow + 1, 1 To MaxCol - minCol + 1) ' расширили массив
         
-            For i = MaxInt(LBound(a, 1), minRow) To MinInt(UBound(a, 1), maxRow)
-                For j = MaxInt(LBound(a, 2), minCol) To MinInt(UBound(a, 2), MaxCol)
+            For i = WorksheetFunction.Max(LBound(a, 1), minRow) To WorksheetFunction.Min(UBound(a, 1), maxRow)
+                For j = WorksheetFunction.Max(LBound(a, 2), minCol) To WorksheetFunction.Min(UBound(a, 2), MaxCol)
                     If toDouble Then tmpArray(i - minRow + 1, j - minCol + 1) = a(i, j)
                     If Not toDouble Then tmpArray1(i - minRow + 1, j - minCol + 1) = a(i, j)
                 Next j

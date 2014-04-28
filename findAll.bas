@@ -1,6 +1,6 @@
-' стырено с http://www.cpearson.com/excel/FindAll.aspx
-' чтобы искать €чейки по формату перед поиском определ€ем Application.SearchFormat
-' чуть перекорЄжил чтобы нормально искала следующую €чейку с заданным форматом
+''' стырено с http://www.cpearson.com/excel/FindAll.aspx
+''' чтобы искать €чейки по формату перед поиском определ€ем Application.SearchFormat
+''' чуть перекорЄжил чтобы нормально искала следующую €чейку с заданным форматом
 Function FindAll(ByVal SearchRange As Range, _
                 FindWhat As Variant, _
                 Optional LookIn As XlFindLookIn = xlValues, _

@@ -1,4 +1,4 @@
-' простенькая функция для добавления одной или нескольких записей в конец массива
+''' простенькая функция для добавления одной или нескольких записей в конец массива
 Sub appendTo(arr As Variant, ParamArray itemsToAppend() As Variant)
     Dim numOfEls As Long, i As Long
     Dim initSize As Long

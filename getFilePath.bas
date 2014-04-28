@@ -1,4 +1,4 @@
-' открывает диалог и возвращает путь к выбранному файлу
+''' открывает диалог и возвращает путь к выбранному файлу
 Function getFilePath(Optional initFileName As String = "", Optional isFolder As Boolean = False) As String
     Dim fso As Object
     Dim initFilePath As String

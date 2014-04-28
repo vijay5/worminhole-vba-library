@@ -1,4 +1,4 @@
-' простенькая функция шифрования (encode = -1 для дешифровки)
+''' простенькая функция шифрования (encode = -1 для дешифровки)
 Function encrypt(ByVal inString As String, Optional encode As Integer = 1) As String
     Dim length As String
     Dim key As String

@@ -1,4 +1,4 @@
-' создаёт случайную текстовую строку
+''' создаёт случайную текстовую строку
 Function MakeRandomName(Optional num As Integer = 15, Optional ByVal complexity As Integer = 3) As String
     Dim st As String
     Dim strArray As Variant

@@ -1,4 +1,4 @@
-' отображает статус задачи в строке состояния (чтобы юзер не пугался)
+''' отображает статус задачи в строке состояния (чтобы юзер не пугался)
 Sub showStatus(text As String, Optional curValue As Variant = "", Optional maxValue As Variant = "")
     If text <> "" Then
         If curValue <> "" And maxValue <> "" Then

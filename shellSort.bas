@@ -1,4 +1,4 @@
-'Процедура для сортировки массива методом Шелла
+''' Процедура для сортировки массива методом Шелла
 Function ShellSort(inArr As Variant) As Variant
     Dim arr As Variant
     Dim chk As Boolean

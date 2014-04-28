@@ -1,7 +1,7 @@
+''' Добавляет выпадающий список к указанной ячейке (2003 compatible)
+''' Список значений задаётся из sourceDataRng (возможно, есть ограничения на кол-во строк/столбцов, т.е. должна быть либо одна строка, либо один столбец)
 ' REQUIRE: col2Array, array2col
 Sub makeDropDownList(targetRng As Range, sourceData As Variant, Optional ignoreBlank As Boolean = True, Optional showError As Boolean = True)
-    ''' Добавляет выпадающий список к указанной ячейке (2003 compatible)
-    ''' Список значений задаётся из sourceDataRng (возможно, есть ограничения на кол-во строк/столбцов, т.е. должна быть либо одна строка, либо один столбец)
     Dim shName As String
     Dim sourceDataRng As Range
     Dim firstCellRow As String, firstCellCol As String

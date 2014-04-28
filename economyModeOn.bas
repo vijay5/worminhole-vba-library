@@ -1,3 +1,4 @@
+''' эконом-мода
 Sub economyModeOn()
     Application.Calculation = xlCalculationManual
     Application.ScreenUpdating = False

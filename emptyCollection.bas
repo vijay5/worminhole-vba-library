@@ -1,4 +1,4 @@
-' очищает коллекцию
+''' очищает коллекцию
 Sub emptyCollection(col As Collection)
     Dim i As Long
     If Not col Is Nothing Then
