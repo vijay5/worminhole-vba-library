@@ -5,7 +5,7 @@ import sys
 import os
 import sqlite3
 
-def readToDb(dbPath, tableFilePath):
+def readToDB(dbPath, tableFilePath):
   chk1 = os.path.isfile(tableFilePath)
   chk2 = os.path.isfile(dbPath)
 
@@ -160,13 +160,10 @@ if __name__ == '__main__':
   if len(args) == 3:
     dbPath = args[1]
     tableFilePath  = args[2]
-    readToDb(dbPath, tableFilePath)
+    readToDB(dbPath, tableFilePath)
   else:
     print('Задано неверное количество аргументов')
 else:
-  dbPath = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\temp.db'
-  tableFilePath  = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\dbo_ORPAS_Tree.txt'
-  readToDb(dbPath, tableFilePath)
-
-
-
+  dbPath = 'temp.db'
+  tableFilePath  = 'dbo_ORPAS_Tree.txt'
+  readToDB(dbPath, tableFilePath)
