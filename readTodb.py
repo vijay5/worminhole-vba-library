@@ -5,7 +5,7 @@ import sys
 import os
 import sqlite3
 
-def readToDB(dbPath, tableFilePath):
+def readToDb(dbPath, tableFilePath, delim=';'):
   chk1 = os.path.isfile(tableFilePath)
   chk2 = os.path.isfile(dbPath)
 
@@ -25,16 +25,18 @@ def readToDB(dbPath, tableFilePath):
       # первый заход - анализ данных
       rowNum = 0
       colNamesLst = []  # список колонок
+      digitSet = set('0123456789.-')
+      alphanumSet = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_.0123456789-+"\\\/')
       for line in file: # бежим по первым нескольким строкам файла
         rowNum += 1
-        lineArr = line.replace('\n','').split(';')          # "как есть"
+        lineArr = line.replace('\n','').split(delim)          # "как есть"
         lineArrClr = [el.replace('"','') for el in lineArr] # без кавычек
 
         if rowNum == 1:
           colNames = dict()
           for el in lineArrClr:
             colName = str(el)
-            colName = colName.replace(' ', '_') # замена пробелов в именах колонок   
+            colName = colName.replace(' ', '_') # замена пробелов в именах колонок
             colNamesLst.append(colName)       # имена столбцов по-порядку
             if colNames.get(colName) == None: # если нет колонки с таким именем
               colNames[colName] = dict() # создаём с пустым словарём типов значений
@@ -47,7 +49,7 @@ def readToDB(dbPath, tableFilePath):
             colName = colNamesLst[cnt1]
             tmpDict = colNames[colName]
             # пытаемся определить тип данных
-            if key != '' and set(key).issubset({'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '-'}):
+            if key != '' and set(key).issubset(digitSet):
               if '.' in key:
                 typeName = 'real'
               else:
@@ -56,6 +58,10 @@ def readToDB(dbPath, tableFilePath):
               typeName = 'text'
             elif ':' in key:
               typeName = 'date'
+            elif '"' in key:
+              typeName = 'text'
+            elif key != '' and set(key).issubset(alphanumSet):
+              typeName = 'text'
             else: # для остальных типов
               typeName = 'none'
 
@@ -66,7 +72,7 @@ def readToDB(dbPath, tableFilePath):
 
             colNames[colName] = tmpDict # пишем словарь обратно
 
-        if rowNum > 20: # для определения формата данных используем только первые 20 строк
+        if rowNum > 300: # для определения формата данных используем только первые 20 строк
           break
 
 
@@ -83,6 +89,8 @@ def readToDB(dbPath, tableFilePath):
           maxFreq = freq
           maxTypeName = typeName
       # в этой точке известен самый часто встречающийся тип
+      if 'text' in tmpDict.keys():
+        maxTypeName = 'text'
       colTypes.append(maxTypeName)
 
       if maxTypeName == 'date':
@@ -93,7 +101,7 @@ def readToDB(dbPath, tableFilePath):
         pass
 
       correctedColTypes.append(maxTypeName) # добавляем "исправленное" поле
-      tableFields.append(colName + ' ' + maxTypeName) # добавляем поле с описанием
+      tableFields.append('[' + colName + '] ' + maxTypeName) # добавляем поле с описанием
 
     # создаём таблицу, если её не было
     c.execute('create table if not exists ' + tableName + ' (' + ', '.join(tableFields) + ')')
@@ -112,7 +120,7 @@ def readToDB(dbPath, tableFilePath):
 
       for line in file: # цикл по файлу
         rowNum += 1
-        lineArr = line.replace('\n','').split(';')          # "как есть"
+        lineArr = line.replace('\n','').split(delim)          # "как есть"
         lineArrClr = [el.replace('"','') for el in lineArr] # без кавычек
 
         if rowNum > 1:
@@ -155,15 +163,23 @@ def readToDB(dbPath, tableFilePath):
     print('Не удалось открыть файл или БД')
 
 
-if __name__ == '__main__':
+if __name__ != '__main__':
   args = sys.argv
   if len(args) == 3:
     dbPath = args[1]
     tableFilePath  = args[2]
-    readToDB(dbPath, tableFilePath)
+    readToDb(dbPath, tableFilePath)
+  elif len(args) >= 4:
+    dbPath = args[1]
+    tableFilePath  = args[2]
+    colDelim  = args[3]
+    readToDb(dbPath, tableFilePath, colDelim)
   else:
     print('Задано неверное количество аргументов')
 else:
-  dbPath = 'temp.db'
-  tableFilePath  = 'dbo_ORPAS_Tree.txt'
-  readToDB(dbPath, tableFilePath)
+  dbPath = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\temp.db'
+  tableFilePath  = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\dbo_ORPAS_Tree.txt'
+  readToDb(dbPath, tableFilePath, ';')
+
+
+

@@ -1,4 +1,4 @@
-' REQUIRE: isInCollection
+' REQUIRES: isInCollection
 Function array2col(arr As Variant) As Collection
     Dim tmpCol As Collection
     Dim Item As Variant

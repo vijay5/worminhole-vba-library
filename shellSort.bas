@@ -1,4 +1,4 @@
-''' Процедура для сортировки массива методом Шелла
+''' Сортировка массива методом Шелла
 Function ShellSort(inArr As Variant) As Variant
     Dim arr As Variant
     Dim chk As Boolean
@@ -9,7 +9,7 @@ Function ShellSort(inArr As Variant) As Variant
     Dim tmp As Variant
     
     arr = inArr ' копируем исходный массив (можно было через ByVal сделать)
-    n = arrayLength(arr) ' длина массива
+    n = UBound(arr, 1) - LBound(arr, 1) + 1 ' длина массива
     If n = 0 Then ' проверка на косячность
         ShellSort = ""
         Exit Function

@@ -1,4 +1,4 @@
-' REQUIRE: isInCollection
+' REQUIRES: isInCollection
 Sub buildIndex(col As Collection, itemKey As Variant, itemValue As Variant)
     Dim tmpCol As Collection
     Dim itemKeyStr As String

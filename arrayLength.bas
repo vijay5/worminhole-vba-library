@@ -1,4 +1,4 @@
-' REQUIRE: arrayDepth
+' REQUIRES: arrayDepth
 Function arrayLength(arr As Variant, Optional degree As Byte = 1) As Long
     ' возвращеает длину массива по какому-либо из измерений
     arrayLength = 0 ' по умолчанию
