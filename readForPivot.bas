@@ -1,6 +1,6 @@
+' REQUIRES: MatrixPart, stepArray, stepFunction
 Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColProperties As Integer, Optional numOfRowParams As Integer = 1, Optional numOfColParams As Integer = 1)
-    ''' „итает текущий лист в сводную таблицу
-    ''' Ќа входе может быть только плоска€ таблица
+    ''' ѕреобразует текущий лист в плоскую таблицу
     ''' ¬нешний вид вход€щей таблицы:
     '''
     ''' [*]                +-----------------------+-----------------------+
@@ -16,7 +16,7 @@ Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColPr
     ''' Var1 - "непосто€нна€" переменна€ (перва€ из двух, всего переменных неограничено)
     ''' Var2 - "непосто€нна€" переменна€ (втора€ из двух, подчинена первой)
     ''' TLCell - перва€ €чейка с данными
-    ''' здесь видно, что кол-во строк над таблицей равно кол-ву "непосто€нных переменных" (если таблица составлена верно)
+    ''' здесь видно, что кол-во строк над TLCell равно кол-ву "непосто€нных переменных" (если таблица составлена верно)
     '''
     ''' на выходе будет следующа€ "проста€" таблица
     '''  Col1  Col2  ColN ||Var1  Var2 || Value
@@ -28,6 +28,18 @@ Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColPr
     Dim minRow As Long, maxRow As Long
     Dim lastFixedCol As Long, lastVarCol As Long, dataCol As Long
     Dim sourceSheet As Variant
+    Dim resultSheet As Worksheet
+    Dim originRow As Long
+    Dim originCol As Long
+    Dim colBlock As Long
+    Dim col As Long
+    Dim j As Long
+    Dim i As Long
+    Dim colParam As Long
+    Dim rowParam As Long
+    Dim outArray As Variant
+    Dim colNum As Long
+    Dim tmp As Variant
     
     ' работаем по исходному выделению
     Set sourceSheet = sourceRange.Parent
@@ -51,19 +63,23 @@ Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColPr
     height = height0 \ numOfRowParams ' число строк на одну секцию финального массива
     width = sourceRange.Columns.Count
                                   
-    ' выводим на новом листе
-    Set resultSheet = Sheets.Add(after:=ActiveSheet)
-    ' константы
+    ' константы дл€ вывода данных
     originRow = 1
     originCol = 1
     lastFixedCol = originCol + numOfRowProperties - 1 ' номер последнего столбца с фиксированными метками
     lastVarCol = lastFixedCol + numOfColProperties    ' номер последнего столбца с переменными метками (метки из colLabels)
     dataCol = lastVarCol + 1                          ' номер столбца, начина€ с которого вправо вывод€тс€ данные
     
+    ' выводим на новом листе
+    Set resultSheet = Sheets.Add(after:=ActiveSheet)
+
+    ' нужно принудительно изменить на Text, иначе некоторые метки строк некорректно воспринимаютс€ Excel'ем
+    Range(Cells(1, 1), Cells(1, 1)).EntireColumn.NumberFormat = "@" 
+ 
     ' перебор всех столбцов исходной таблицы, каждый столбец пишетс€ вниз
     ' предполагаем, что дл€ каждого параметра одной единицы данных метки строки и столбца одни и те же (проверку не делаем)
     colBlock = 0
-    For col = 1 To UBound(sourceData, 2) Step numOfColParams
+    For col = 1 To UBound(sourceData, 2) Step numOfColParams ' цикл по колонкам (на начало каждого блока)
         colBlock = colBlock + 1
         minRow = originRow + (colBlock - 1) * height
         maxRow = originRow + colBlock * height - 1
@@ -74,9 +90,9 @@ Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColPr
             Range(Cells(minRow, lastFixedCol + j), Cells(maxRow, lastFixedCol + j)).value = colLabels(j, col)
         Next j
         ' выводим значение €чеек
-        For colParam = 1 To numOfColParams
+        For colParam = 1 To numOfColParams ' столбцы внутри каждого блока
             outArray = MatrixPart(sourceData, 1, height0, col + colParam - 1, col + colParam - 1, False, False) ' скопировали весь столбец из исходного массива
-            For rowParam = 1 To numOfRowParams
+            For rowParam = 1 To numOfRowParams ' строки внутри каждого блока
                 colNum = dataCol + (colParam - 1) * numOfRowParams + rowParam - 1
                 Range(Cells(minRow, colNum), Cells(maxRow, colNum)) = stepArray(outArray, rowParam, numOfRowParams, 1, 1)
             Next rowParam
