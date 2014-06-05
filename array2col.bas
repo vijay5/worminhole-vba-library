@@ -1,4 +1,5 @@
 ' REQUIRES: isInCollection
+''' преобразует xD-массив в коллекцию
 Function array2col(arr As Variant) As Collection
     Dim tmpCol As Collection
     Dim Item As Variant

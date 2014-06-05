@@ -1,6 +1,6 @@
 ' REQUIRES: arrayDepth
+''' возвращеает длину массива по какому-либо из измерений
 Function arrayLength(arr As Variant, Optional degree As Byte = 1) As Long
-    ' возвращеает длину массива по какому-либо из измерений
     arrayLength = 0 ' по умолчанию
     If InStr(TypeName(arr), "()") > 0 Then
         If arrayDepth(arr) >= 1 Then ' ѕеред нами массив

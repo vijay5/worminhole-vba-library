@@ -1,3 +1,4 @@
+''' преобразует коллекцию в 1D-массив
 Function col2Array(col As Collection) As Variant
     Dim tmpArr As Variant
     Dim el As Variant

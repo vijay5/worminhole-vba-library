@@ -1,9 +1,9 @@
 ' REQUIRES: isInCollection
+''' индексирует одни значения по другим значениям
 Sub buildIndex(col As Collection, itemKey As Variant, itemValue As Variant)
     Dim tmpCol As Collection
     Dim itemKeyStr As String
     Dim itemValueStr As String
-    ' создаёт индекс
     
     itemKeyStr = CStr(itemKey)
     itemValueStr = CStr(itemValue)
