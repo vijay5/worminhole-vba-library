@@ -1,4 +1,5 @@
 ''' открывает диалог и возвращает путь к выбранному файлу
+' REQUIRES: appendTo, arrayLength
 Function getFilePath(Optional initFileName As String = "", Optional isFolder As Boolean = False, Optional filterList As Variant = "") As String
     Dim fso As Object
     Dim initFilePath As String

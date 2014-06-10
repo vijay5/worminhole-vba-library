@@ -4,6 +4,7 @@
 '''    false - из 2D в 1D*1D
 ''' minRow - номер первой строки в новом массиве
 ''' minCol - номер первого столбца в новом массиве
+' REQUIRES: arrayLength
 Function regroupArray(arr As Variant, Optional fromChainArray As Boolean = True, Optional minRow As Long = 0, Optional minCol As Long = 0) As Variant
     
     Dim i As Long, j As Long
