@@ -1,4 +1,5 @@
 ''' создаёт сводную таблицу (заготовку) по заданному диапазону или pivotCache'у на текущем/заданном листе листе
+'REQUIRES: MakeRandomName
 Function createPivotTable(Optional ByVal destRange As Range, Optional ByVal sourceDataRange As Range, Optional ptCache As PivotCache) As Object
     Dim ptTable As PivotTable
     Dim pivotTableName As Variant
