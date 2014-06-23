@@ -1,3 +1,5 @@
+''' TODO: нужно вывод сделать не поячеекчно, а писать в массив, а затем выводить весь массив целиком...
+
 ' REQUIRES: MatrixPart, stepArray, stepFunction
 Sub ReadForPivot(sourceRange As Range, numOfRowProperties As Integer, numOfColProperties As Integer, Optional numOfRowParams As Integer = 1, Optional numOfColParams As Integer = 1)
     ''' Преобразует текущий лист в плоскую таблицу

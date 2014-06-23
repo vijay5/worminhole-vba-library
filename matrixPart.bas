@@ -19,6 +19,8 @@ Function MatrixPart(ByRef a As Variant, _
     Dim tmpArray1() As Variant ' не судите строго - память мне жалко :)
     Dim dimensions As Byte
     Dim tmp As Variant
+    Dim i As Long
+    Dim j As Long
 
     ' весьма грубо получаем размерность массива
     On Error Resume Next
