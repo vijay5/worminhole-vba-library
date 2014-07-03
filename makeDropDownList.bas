@@ -10,6 +10,9 @@ Sub makeDropDownList(targetRng As Range, sourceData As Variant, Optional ignoreB
     Dim validObj As Validation
     Dim oldSelectionAddr As String
     Dim sourceDataCol As Collection
+    Dim sourceDataArr As Variant
+    Dim formulaStr As String
+    Dim i As Long
     
     If targetRng Is Nothing Then Exit Sub ' выходим
     

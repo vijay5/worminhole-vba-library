@@ -1,4 +1,6 @@
 Function InvertSelection(inputArea As Variant) As Variant
+    Dim maxRowGlobal as Long
+    Dim maxColGlobal as Long
     Dim firstRow As Long, lastRow As Long, firstColumn As Long, lastColumn As Long
     Dim mergedRange As Range, finalRange As Range, ar As Range
     Dim elementsOfRange() As Range
@@ -6,16 +8,8 @@ Function InvertSelection(inputArea As Variant) As Variant
     Dim processRange As Range
     
     ' /////// координаты ///////
-    maxRowGlobal = 65536
-    maxColGlobal = 256
-    If CDbl(Application.Version) >= 12 Then ' координаты
-        If Not ActiveWorkbook Is Nothing Then
-            If Not ActiveWorkbook.Excel8CompatibilityMode Then
-                maxRowGlobal = 1048576
-                maxColGlobal = 16384
-            End If
-        End If
-    End If
+    maxRowGlobal = ActiveSheet.RowsCount
+    maxColGlobal = ActiveSheet.Columns.Count
     ' \\\\\\\ координаты \\\\\\\
 
     
