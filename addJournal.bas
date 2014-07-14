@@ -10,6 +10,7 @@
 '''      "[Error]" - критическая ошибка, полная остановка выполнения, вывод файла журнала на экран
 '''      "[Event]" - некое событие, оно пишется в лог, на экран не выводится
 '''      "[Warning]" и все остальные значения - некая ошибка, выводится на экран через MsgBox, управление возвращается
+' REQUIRES: arrayDepth, arrayLength
 Function addJournal(ParamArray items_in() As Variant) As Variant
     Dim curTimeStr As String
     Dim journal As Variant

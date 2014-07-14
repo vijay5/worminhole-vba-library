@@ -57,7 +57,7 @@ Sub makeDropDownList(targetRng As Range, sourceData As Variant, Optional ignoreB
         Set validObj = Selection.Validation
     Else
         oldSelectionAddr = ""
-        Set validObj = targetRng.Cells(1, 1).Validation
+        Set validObj = targetRng.Validation
     End If
     
     
