@@ -20,7 +20,11 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
             .InitialFileName = Left(initFileName, InStrRev(initFileName, "\"))
             
             If .Show = True Then                         ' пользователь указал файл (проверка замены существующего файла - автоматом)
-                getFilePath = .SelectedItems(1) + "\"         ' возвращаем полный путь к файлу
+                getFilePath = .SelectedItems(1)          ' возвращаем полный путь к файлу
+                If Right(getFilePath, 1) <> "\" Then
+                    getFilePath = getFilePath + "\"
+                End If
+
             Else
                 getFilePath = ""
             End If
