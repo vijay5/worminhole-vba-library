@@ -5,6 +5,12 @@ Sub buildIndex(col As Collection, itemKey As Variant, itemValue As Variant)
     Dim itemKeyStr As String
     Dim itemValueStr As String
     
+    If col Is Nothing Then ' если коллекция не задана
+        Set col = New Collection
+    Else
+        ' pass
+    End If
+
     itemKeyStr = CStr(itemKey)
     itemValueStr = CStr(itemValue)
     If isInCollection(itemKeyStr, col) Then ' есть в коллекции
