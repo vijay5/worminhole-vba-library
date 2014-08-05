@@ -6,5 +6,9 @@ Function arrayLength(arr As Variant, Optional degree As Byte = 1) As Long
         If arrayDepth(arr) >= 1 Then ' Перед нами массив
             arrayLength = UBound(arr, degree) - LBound(arr, degree) + 1
         End If
+    ElseIf TypeName(arr) = "Collection" Then
+        arrayLength = arr.Count
+    Else
+        ' pass
     End If
 End Function
