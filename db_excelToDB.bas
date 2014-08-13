@@ -15,12 +15,14 @@ Sub db_excelToDB(excelRng As Variant, conn As ADODB.Connection, destTblName As S
     Dim destFieldNamesArr As Variant
     Dim tmpDim2 As Single
     Dim tmpDim3 As Single
+    Dim fldNum As Long
     Dim fldName As String
     Dim fldNameAlpha As String
     Dim noFldsList As Collection
     Dim destFieldNamesTmp As Collection
     Dim existingFldsList As Collection
-     
+    Dim tmp As Variant
+         
     ' ///// проверки
     ' / вход€щий массив значений - массив или Range
     chk0 = (TypeName(excelRng) = "Range" Or InStr(TypeName(excelRng), "()") > 0)
