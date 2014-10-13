@@ -1,6 +1,6 @@
 ''' открывает диалог и возвращает путь к выбранному файлу
 ' REQUIRES: appendTo, arrayLength
-Function getFilePath(Optional initFileName As String = "", Optional isFolder As Boolean = False, Optional filterList As Variant = "") As String
+Function getFilePath(Optional initFileName As String = "", Optional isFolder As Boolean = False, Optional filterList As Variant = "", Optional dialogTitle As String = "") As String
     Dim fso As Object
     Dim initFilePath As String
     Dim chk As Boolean
@@ -18,6 +18,11 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
         ' собственно диалог
         With Application.FileDialog(msoFileDialogFolderPicker)   ' диалог - открытие файла
             .InitialFileName = Left(initFileName, InStrRev(initFileName, "\"))
+            
+            ' задаём диалог, елси задан
+            If dialogTitle <> "" Then
+                .Title = dialogTitle
+            End If
             
             If .Show = True Then                         ' пользователь указал файл (проверка замены существующего файла - автоматом)
                 getFilePath = .SelectedItems(1)          ' возвращаем полный путь к файлу
@@ -64,6 +69,11 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
             .AllowMultiSelect = False                    ' выбираем только один файл
             .InitialFileName = initFilePath              ' путь по-умолчанию - ссылка на текущий или указанный файл
             
+            ' задаём диалог, елси задан
+            If dialogTitle <> "" Then
+                .Title = dialogTitle
+            End If
+            
             If .Show = True Then                         ' пользователь указал файл (проверка замены существующего файла - автоматом)
                 getFilePath = .SelectedItems(1)          ' возвращаем полный путь к файлу
             Else
@@ -72,3 +82,4 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
         End With
     End If
 End Function
+

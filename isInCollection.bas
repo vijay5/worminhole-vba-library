@@ -26,7 +26,7 @@ Function isInCollection(key As String, col As Variant)
         End If
     On Error GoTo 0
     
-    If IsArray(tmp) Or IsObject(tmp) Then
+    If IsArray(tmp) Or IsObject(tmp) Or IsError(tmp) Then
         isInCollection = True
     Else
         isInCollection = (tmp <> "abrakadabra")

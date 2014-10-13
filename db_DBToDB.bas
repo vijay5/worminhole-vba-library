@@ -81,7 +81,11 @@ Sub db_DBToDB(srcConn As ADODB.Connection, srcTblName As String, destConn As ADO
     ' \ проверки завершены
 
     ' соединение с источником
-    srcQueryStr = "SELECT * FROM " + srcTblName + IIf(srcQryCondition <> "", " WHERE " + srcQryCondition, "")
+    If srcQryCondition = "" And Left(srcTblName, 7) = "SELECT " Then
+        srcQueryStr = srcTblName
+    Else
+        srcQueryStr = "SELECT * FROM " + srcTblName + IIf(srcQryCondition <> "", " WHERE " + srcQryCondition, "")
+    End If
     srcTableRs.ActiveConnection = srcConn.ConnectionString
     srcTableRs.LockType = adLockOptimistic
     srcTableRs.source = srcQueryStr
@@ -150,7 +154,5 @@ Sub db_DBToDB(srcConn As ADODB.Connection, srcTblName As String, destConn As ADO
     
     destTableRs.Close ' закрываем табличку-приёмник
     srcTableRs.Close ' закрываем табличку-источник
-    
-    
 
 End Sub

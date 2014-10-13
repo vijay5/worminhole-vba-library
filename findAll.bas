@@ -1,5 +1,5 @@
 ''' стырено с http://www.cpearson.com/excel/FindAll.aspx
-''' чтобы искать €чейки по формату перед поиском определ€ем Application.SearchFormat
+''' чтобы искать €чейки по формату перед поиском определ€ем Application.FindFormat
 ''' чуть перекорЄжил чтобы нормально искала следующую €чейку с заданным форматом
 Function FindAll(SearchRange As Range, _
                 FindWhat As Variant, _
