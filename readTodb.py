@@ -123,7 +123,10 @@ def readToDb(dbPath, tableFilePath, delim=';'):
         lineArr = line.replace('\n','').split(delim)          # "как есть"
         lineArrClr = [el.replace('"','') for el in lineArr] # без кавычек
 
-        if rowNum > 1:
+        if len(lineArr) != len(colNamesLst):
+          print('Строка', rowNum, 'содержит неправильное число полей')
+
+        if rowNum > 1 and len(lineArr) == len(colNamesLst):
           for colNum in range(0, len(lineArrClr)): # перебор номеров столбцов
             value = lineArrClr[colNum] # значение в текущей строке
             if colTypes[colNum] in ('date', 'text', 'none'):
@@ -144,6 +147,7 @@ def readToDb(dbPath, tableFilePath, delim=';'):
           if rowNum % 50 == 0: # с шагом 10 строк
             c.executemany('insert into ' + tableName + ' (' + ', '.join(colNamesLst) + ') values ('+ qnMarks +')', recordList)
             recordList = [] # чистим буфер
+#            conn.commit()
 
         if rowNum % 500 == 0:
           #conn.commit()
@@ -177,9 +181,9 @@ if __name__ != '__main__':
   else:
     print('Задано неверное количество аргументов')
 else:
-  dbPath = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\temp.db'
-  tableFilePath  = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ ТД - Расчёт плановых лимитов\\Выгрузка\\dbo_ORPAS_Tree.txt'
-  readToDb(dbPath, tableFilePath, ';')
+  dbPath = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ Чтение мегафайла для Сергея\\temp.db'
+  tableFilePath  = 'D:\\Users\\User\\Desktop\\Текучка\\(xxxx)+ Чтение мегафайла для Сергея\\tshist.csv'
+  readToDb(dbPath, tableFilePath, ',')
 
 
 
