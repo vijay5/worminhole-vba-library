@@ -1,5 +1,5 @@
 ' возвращает ссылку на книгу по адресу
-'REQUIRES: isInCollection
+'REQUIRES: isInCollection, getFileName
 Function wbOpener(wbPath As String) As Workbook
     Dim fso As New Scripting.FileSystemObject
     Dim fileName As String

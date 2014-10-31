@@ -1,4 +1,5 @@
 ''' переливает данные из одной базы в другую
+' REQUIRES: col2Array, array2col
 Sub db_DBToDB(srcConn As ADODB.Connection, srcTblName As String, destConn As ADODB.Connection, destTblName As String, Optional srcFldsList As Variant = "", Optional destFldsList As Variant = "", Optional srcQryCondition As String = "")
 
     Dim srcQueryStr As String

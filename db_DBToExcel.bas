@@ -68,7 +68,7 @@ Function db_DBToExcel(conn As ADODB.Connection, srcTblName As String, Optional s
         Next fldNum
     
         If noFldsList.Count > 0 Then
-            MsgBox "[db_excelToDB] В таблице отсутствуют поля: " + Join(col2Array(noFldsList), ", ")
+            MsgBox "[db_DBToExcel] В таблице отсутствуют поля: " + Join(col2Array(noFldsList), ", ")
             Exit Function
         Else
             ' pass
