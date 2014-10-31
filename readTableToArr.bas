@@ -1,6 +1,6 @@
 ' читает некоторые столбцы в таблицу, проверяет на уникальность строк, может сделать reBase
-' Пример запуска:     readTableToArr Array("WARE", "PO_STATUS", "PO_DATE_DELIVERY", "PLAN_AMOUNT_DELIVERY"), _
-                                           Workbooks("AW15.XLS").Sheets(1).Range("1:1"), outArr, Array("WARE")
+' Пример запуска:     readTableToArr Array("WARE", "PO_STATUS", "PO_DATE_DELIVERY", "PLAN_AMOUNT_DELIVERY"), 
+'                                    Workbooks("AW15.XLS").Sheets(1).Range("1:1"), outArr, Array("WARE")
 
 'REQUIRES: getMaxRow, arrayLength, getProperValArray, FindCell, addUniqToCol, regroupArray, col2Array, array2col, isInCollection, addToText
 Sub readTableToArr(fieldsList As Variant, headerRng As Range, outArr As Variant, Optional keyFieldsList As Variant = False, Optional minRow As Long = 0, Optional minCol As Long = 0)
