@@ -1,4 +1,4 @@
-''' вовзращает 2D-массив, если есть данные в таблице
+''' возвращает 2D-массив, если есть данные в таблице
 ''' если данных нет - возвращает пустую строку
 ' REQUIRES: transposeArr, col2Array, isInCollection
 Function db_DBToExcel(conn As ADODB.Connection, srcTblName As String, Optional srcFieldNames As Variant = "*", Optional fieldsCol As Collection) As Variant
