@@ -1,10 +1,13 @@
 ''' סבנמס אגעמפטכüענא
-Sub dropAutoFilter()
-    Dim sh As Worksheet
+Sub dropAutoFilter(Optional sh As Worksheet = Nothing)
     Dim cnt As Integer
     Dim flt As Object
     
-    Set sh = ActiveSheet
+    If sh Is Nothing Then
+        Set sh = ActiveSheet
+    Else
+        ' pass
+    End If
     
     If sh.AutoFilter Is Nothing Then ' אגעמפטכüענא םוע
     Else ' אגעמפטכüענ וסעü
@@ -17,3 +20,4 @@ Sub dropAutoFilter()
         Next flt
     End If
 End Sub
+

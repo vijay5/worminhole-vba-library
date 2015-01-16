@@ -39,6 +39,8 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
         ' определяем ближайшую папку, откуда будем открывать файлы
         If fso.FileExists(initFileName) Then
             initFilePath = Left(initFileName, InStrRev(initFileName, "\"))
+        ElseIf fso.FolderExists(initFileName) Then
+            initFilePath = initFileName
         Else
             initFilePath = ThisWorkbook.Path + "\"
         End If
@@ -82,4 +84,3 @@ Function getFilePath(Optional initFileName As String = "", Optional isFolder As 
         End With
     End If
 End Function
-
