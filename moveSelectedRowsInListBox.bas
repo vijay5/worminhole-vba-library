@@ -1,5 +1,5 @@
-'' Сдвигает выделенные строки ListBox вверх или вниз
-' REQUIRES: getListOfSelected, col2Array, arrayLength, Collapse, MatrixPart
+''' Сдвигает выделенные строки ListBox вверх или вниз
+''' REQUIRES: getListOfSelected, col2Array, arrayLength, Collapse, MatrixPart
 Private Sub cmb_DownArrow_Click() ' опускаем список вниз
     Dim listOfSelected As Variant, listLength As Variant
     Dim tmp As Variant

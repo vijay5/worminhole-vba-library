@@ -1,4 +1,4 @@
-' возвращает список с номерами выделенных элементов. Нумерация с 0.
+''' возвращает список с номерами выделенных элементов. Нумерация с 0.
 Function getListOfSelected(listBox As Object) As Collection
     Dim tmp As Variant, i As Integer
     Dim tmpCol As New Collection

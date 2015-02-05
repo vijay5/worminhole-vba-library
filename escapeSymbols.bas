@@ -1,4 +1,4 @@
-' экранирует непечатные символы в строке
+''' экранирует непечатные символы в строке
 Function escapeSymbols(inString As String, Optional escape As Boolean = True, Optional symbList As Variant = "") As String
     Dim outString As String
     Dim defReplaceList As Variant
