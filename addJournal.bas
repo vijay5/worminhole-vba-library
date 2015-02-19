@@ -71,3 +71,17 @@ Function addJournal(ParamArray items_in() As Variant) As Variant
     Set file = Nothing
     Set fso = Nothing
 End Function
+
+
+Sub showJournal()
+    Dim fso As Object
+    Dim jrnPath As String
+    Dim file As Object
+    
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    jrnPath = ThisWorkbook.Path + "\" + Mid(ThisWorkbook.Name, 1, InStrRev(ThisWorkbook.Name, ".xl") - 1) + ".journal"
+    Set file = fso.OpenTextFile(jrnPath, 8, 1, 0)
+    If fso.FileExists(jrnPath) Then
+        Shell "notepad.exe " + jrnPath, vbNormalFocus
+    End If
+End Sub

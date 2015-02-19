@@ -1,6 +1,6 @@
 ''' Просматривает заданное количество вложенных папок от текущего адреса
 ''' Возвращает коллекцию путей к файлам, имя которых совпадает с маской
-Function getFileList(ByVal folderPath As String, Optional ByVal mask As String = "", _
+Function getFileList(ByVal folderPath As String, Optional ByVal mask As Variant = "", _
                              Optional ByVal maxSearchDepth As Long = 1) As Collection
    ' Получает в качестве параметра путь к папке FolderPath,
    ' маску имени искомых файлов Mask (будут отобраны только файлы с такой маской/расширением)
@@ -11,7 +11,7 @@ Function getFileList(ByVal folderPath As String, Optional ByVal mask As String =
     Dim fileList As New Collection
 
     Set fileList = New Collection    ' создаём пустую коллекцию
-    GetAllFileNamesUsingfso folderPath, mask, fso, fileList, maxSearchDepth ' поиск
+    getAllFileNamesUsingfso folderPath, mask, fso, fileList, maxSearchDepth ' поиск
     Set fso = Nothing
     
     
@@ -19,7 +19,8 @@ Function getFileList(ByVal folderPath As String, Optional ByVal mask As String =
 
 End Function
 
-Sub getAllFileNamesUsingfso(ByVal folderPath As String, ByVal mask As String, ByRef fso As Object, ByRef fileList As Collection, ByVal maxSearchDepth As Long)
+
+Sub getAllFileNamesUsingfso(ByVal folderPath As String, ByVal mask As Variant, ByRef fso As Object, ByRef fileList As Collection, ByVal maxSearchDepth As Long)
     Dim curfold As Variant
     Dim fil As Variant
     Dim sfol As Variant
@@ -37,12 +38,18 @@ Sub getAllFileNamesUsingfso(ByVal folderPath As String, ByVal mask As String, By
             ' Application.StatusBar = "Поиск в папке: " & folderPath
             
             For Each fil In curfold.Files    ' перебираем все файлы в папке folderPath
-                If fil.Name Like mask Then fileList.Add fil.path
+                If IsArray(mask) Then
+                    For Each el In mask
+                        If fil.Name Like CStr(el) Then fileList.Add fil.Path
+                    Next el
+                Else
+                    If fil.Name Like mask Then fileList.Add fil.Path
+                End If
             Next fil
             maxSearchDepth = maxSearchDepth - 1    ' уменьшаем глубину поиска в подпапках
             If maxSearchDepth > 0 Then    ' если надо искать глубже
                 For Each sfol In curfold.SubFolders    ' перебираем все подпапки в папке folderPath
-                    GetAllFileNamesUsingfso sfol.path, mask, fso, fileList, maxSearchDepth
+                    getAllFileNamesUsingfso sfol.Path, mask, fso, fileList, maxSearchDepth
                 Next sfol
             End If
             Set fil = Nothing
